@@ -16,6 +16,12 @@ import org.objectweb.asm.MethodVisitor;
 import static org.objectweb.asm.Opcodes.ACC_STATIC;
 
 
+/**
+ * Initialises {@link Log4jJmxSupportAdapter} for class manipulation.
+ * 
+ * @author <a href="http://www.hapiware.com" target="_blank">hapi</a>
+ *
+ */
 public class Log4jJmxSupportTransformer
 	implements
 		ClassFileTransformer

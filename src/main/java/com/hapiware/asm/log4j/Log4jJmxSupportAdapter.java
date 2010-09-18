@@ -9,7 +9,14 @@ import com.google.inject.cglib.asm.Opcodes;
 import com.hapiware.asm.log4j.Log4jJmxSupportTransformer.LoggerDesc;
 
 
-
+/**
+ * {@code Log4jJmxSupportTransformer} is used to add
+ * {@code com.hapiware.jmx.log4j.JmxLog4jLogger.register(org.apache.log4j.Logger)} calls to
+ * static block of the owning class.
+ * 
+ * @author <a href="http://www.hapiware.com" target="_blank">hapi</a>
+ * @see Log4jJmxSupportAgentDelegate
+ */
 public class Log4jJmxSupportAdapter extends MethodAdapter
 {
 	private final List<LoggerDesc> _loggerDescs;
