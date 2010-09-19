@@ -10,9 +10,11 @@ import java.util.regex.Pattern;
  * adds the JMX support during the class loading.
  *  
  * 
- * <h3>com.hapiware.agent.Agent required</h3>
- * {@code Log4jJmxSupportAgentDelegate} requires {@code com.hapiware.agent.Agent}. For more
- * information see {@code com.hapiware.agent.Agent}.
+ * <h3>Requirements</h3>
+ * {@code Log4jJmxSupportAgentDelegate} requires {@code com.hapiware.agent.Agent} and
+ * {@code log4j-jmx-support-x.x.x.jar}. For more information see {@code com.hapiware.agent.Agent}
+ * and {@link com.hapiware.jmx.log4j.JmxLog4jLogger}. Also an ASM 3.0 or later is needed
+ * (see <a href="http://asm.ow2.org/" target="_blank">http://asm.ow2.org/</a>).
  * 
  * 
  * <h3>Notice</h3>
@@ -22,10 +24,39 @@ import java.util.regex.Pattern;
  * the need for {@code Log4jJmxSupportAgentDelegate} altogether).
  * 
  * 
+ * <h3>Configuring log4j JMX support agent</h3>
+ * The support agent is configured by using the following elements:
+ * 	<ul>
+ * 		<li>{@code <agent/delegate>}</li>
+ * 		<li>{@code <agent/classpath>}</li>
+ * 		<li>{@code <agent/filter>} (Optional)</li>
+ * 	</ul>
+ * 
+ * For example:
+ * <xmp>
+ * 	<?xml version="1.0" encoding="UTF-8" ?>
+ * 	<agent>
+ * 		<delegate>com.hapiware.asm.log4j.Log4jJmxSupportAgentDelegate</delegate>
+ *		<classpath>
+ * 			<entry>/users/me/agent/target/log4j-jmx-support-delegate-1.0.0.jar</entry>
+ * 			<entry>/usr/local/asm-3.1/lib/all/asm-3.1.jar</entry>
+ * 		</classpath>
+ * 
+ * 		<!--
+ * 			A JMX support is added to every log4j logger in com.hapiware.* package.
+ * 		-->
+ * 		<filter>
+ *			<include>^com/hapiware/.+</include>
+ * 		</filter>
+ * 	</agent>
+ * </xmp>
+ * 
+ * 
  * <h3>Remember classpath</h3>
- * Remember to add a suitable version of {@code log4jJmxSupport-x.x.x.jar} to the classpath
+ * Remember to add a suitable version of {@code log4j-jmx-support-x.x.x.jar} to the classpath
  * of the target JVM. This jar file is needed to add the JMX supprt for log4j. A Maven groupId
- * for {@code log4jJmxSupport-x.x.x.jar} is {@code com.hapiware.jmx.log4j}. 
+ * for {@code log4j-jmx-support-x.x.x.jar} is {@code com.hapiware.jmx.log4j}. 
+ * 
  * 
  * @author <a href="http://www.hapiware.com" target="_blank">hapi</a>
  * @see com.hapiware.asm.agent.Agent
