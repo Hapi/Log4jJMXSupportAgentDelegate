@@ -4,11 +4,17 @@ README - Log4jJmxSupportAgentDelegate
 
 DESCRIPTION
 -----------
+Adds a JMX support for log4j in the case where the source code is not available or if the source
+code does not wanted to be changed for some other reason. Log4jJmxSupportAgentDelegate adds
+the JMX support during the class loading.
+
+JMX support is added only for static org.apache.log4j.Logger objects.
 
 
 REQUIREMENTS
 ------------
 - Java 1.5 or later
+- Log4jJMXSupport utility classes in the classpath (log4j-jmx-support-x.x.x.jar)
 - com.hapiware.agent.Agent (see http://www.hapiware.com)
 - ASM 3.0 or newer (see http://asm.ow2.org/)
 
