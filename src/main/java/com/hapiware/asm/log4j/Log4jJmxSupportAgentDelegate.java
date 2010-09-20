@@ -5,16 +5,23 @@ import java.util.regex.Pattern;
 
 
 /**
- * Adds a JMX support for log4j in the case where the source code is not available or if the source
- * code does not wanted to be changed for some other reason. {@code Log4jJmxSupportAgentDelegate}
+ * Adds a JMX support for log4j in the case where source code is not available or if source code
+ * does not wanted to be changed for some other reason. {@code Log4jJmxSupportAgentDelegate}
  * adds the JMX support during the class loading.
  *  
  * 
  * <h3>Requirements</h3>
- * {@code Log4jJmxSupportAgentDelegate} requires {@code com.hapiware.agent.Agent} and
- * {@code log4j-jmx-support-x.x.x.jar}. For more information see {@code com.hapiware.agent.Agent}
- * and {@link com.hapiware.jmx.log4j.JmxLog4jLogger}. Also an ASM 3.0 or later is needed
- * (see <a href="http://asm.ow2.org/" target="_blank">http://asm.ow2.org/</a>).
+ * {@code Log4jJmxSupportAgentDelegate} requires:
+ * <ul>
+ * 		<li>{@code com.hapiware.agent.Agent}</li>
+ * 		<li>
+ * 			{@code om.hapiware.jmx.log4j.JmxLog4jLogger} (i.e. {@code log4j-jmx-support-x.x.x.jar}).
+ * 			This also requires log4j v. 1.2. or later.
+ * 		</li>
+ * 		<li>
+ * 			ASM 3.0 or later (see <a href="http://asm.ow2.org/" target="_blank">http://asm.ow2.org/</a>)
+ * 		</li>
+ * </ul>
  * 
  * 
  * <h3>Notice</h3>
@@ -29,7 +36,7 @@ import java.util.regex.Pattern;
  * 	<ul>
  * 		<li>{@code <agent/delegate>}</li>
  * 		<li>{@code <agent/classpath>}</li>
- * 		<li>{@code <agent/filter>} (Optional)</li>
+ * 		<li>{@code <agent/filter>} (Optional but recommended)</li>
  * 	</ul>
  * 
  * For example:
@@ -39,11 +46,11 @@ import java.util.regex.Pattern;
  * 		<delegate>com.hapiware.asm.log4j.Log4jJmxSupportAgentDelegate</delegate>
  *		<classpath>
  * 			<entry>/users/me/agent/target/log4j-jmx-support-delegate-1.0.0.jar</entry>
- * 			<entry>/usr/local/asm-3.1/lib/all/asm-3.1.jar</entry>
+ * 			<entry>/usr/local/asm-3.1/lib/asm-3.1.jar</entry>
  * 		</classpath>
  * 
  * 		<!--
- * 			A JMX support is added to every log4j logger in com.hapiware.* package.
+ * 			A JMX support is added to every log4j logger for every class in com.hapiware.* package.
  * 		-->
  * 		<filter>
  *			<include>^com/hapiware/.+</include>
@@ -54,8 +61,7 @@ import java.util.regex.Pattern;
  * 
  * <h3>Remember classpath</h3>
  * Remember to add a suitable version of {@code log4j-jmx-support-x.x.x.jar} to the classpath
- * of the target JVM. This jar file is needed to add the JMX supprt for log4j. A Maven groupId
- * for {@code log4j-jmx-support-x.x.x.jar} is {@code com.hapiware.jmx.log4j}. 
+ * of the target JVM. This jar file is needed to add the JMX support for log4j.
  * 
  * 
  * @author <a href="http://www.hapiware.com" target="_blank">hapi</a>
