@@ -15,6 +15,7 @@ REQUIREMENTS
 ------------
 - Java 1.5 or later
 - Log4jJMXSupport utility classes in the classpath (log4j-jmx-support-x.x.x.jar)
+  - log4j v. 1.2 or later
 - com.hapiware.agent.Agent (see http://www.hapiware.com)
 - ASM 3.0 or newer (see http://asm.ow2.org/)
 
